@@ -3,7 +3,6 @@ using DayPlanner.Services;
 using DayPlanner.ViewModels;
 using DayPlanner.Views;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Hosting;
 
 namespace DayPlanner
 {
@@ -24,17 +23,15 @@ namespace DayPlanner
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "notes.db3");
             builder.Services.AddSingleton<INoteRepository, NoteRepository>(s => new NoteRepository(dbPath));
 
-            ////Navigation
-            //builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
-            //Routing.RegisterRoute(nameof(NoteListPage), typeof(NoteListPage));
-            //Routing.RegisterRoute(nameof(NoteEditPage), typeof(NoteEditPage));
+            //Navigation
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             // Views
-            builder.Services.AddSingleton<NoteListPage>();
+            builder.Services.AddTransient<NoteListPage>();
             builder.Services.AddTransient<NoteEditPage>();
 
             //ViewModels
-            builder.Services.AddSingleton<NoteListVM>();
+            builder.Services.AddTransient<NoteListVM>();
             builder.Services.AddTransient<NoteEditVM>();
 #if DEBUG
             builder.Logging.AddDebug();

@@ -7,6 +7,9 @@ namespace DayPlanner
         public AppShell()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(NoteListPage),typeof(NoteListPage));
+            Routing.RegisterRoute(nameof(NoteEditPage), typeof(NoteEditPage));
         }
     }
 }

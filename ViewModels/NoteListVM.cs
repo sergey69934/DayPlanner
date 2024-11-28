@@ -3,11 +3,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DayPlanner.Data;
 using DayPlanner.Models;
+using DayPlanner.Services;
 using DayPlanner.Views;
 
 namespace DayPlanner.ViewModels
 {
-    public partial class NoteListVM : ObservableObject
+    public partial class NoteListVM : BaseViewModel
     {
         #region Private Fields
 
@@ -29,7 +30,7 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task AddNote()
         {
-            await Shell.Current.GoToAsync(nameof(NoteEditPage), new Dictionary<string, object>
+            await NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
             {
                 { nameof(NoteModel), new NoteModel() }
             });
@@ -60,7 +61,7 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task NoteTapped()
         {
-            await Shell.Current.GoToAsync(nameof(NoteEditPage), new Dictionary<string, object>
+            await NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
             {
                 { nameof(NoteModel), SelectedNote }
             });
@@ -73,7 +74,7 @@ namespace DayPlanner.ViewModels
                 Task.Run(async () =>
                 {
                     await SearchNotes(value);
-                }).GetAwaiter().GetResult();
+                });
             }
             else
             {
@@ -99,7 +100,7 @@ namespace DayPlanner.ViewModels
 
         #region Public Constructors
 
-        public NoteListVM(INoteRepository noteRepository)
+        public NoteListVM(INoteRepository noteRepository, INavigationService navigationService) : base(navigationService)
         {
             _noteRepository = noteRepository;
 

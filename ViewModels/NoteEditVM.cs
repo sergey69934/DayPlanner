@@ -2,12 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using DayPlanner.Data;
 using DayPlanner.Models;
+using DayPlanner.Services;
 using DayPlanner.Views;
 
 namespace DayPlanner.ViewModels
 {
     [QueryProperty(nameof(NoteModel), nameof(Models.NoteModel))]
-    public partial class NoteEditVM : ObservableValidator
+    public partial class NoteEditVM : BaseViewModel
     {
         #region Private Fields
 
@@ -23,7 +24,7 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task Cancel()
         {
-            await Shell.Current.GoToAsync(nameof(NoteListPage));
+            await NavigationService.NavigateToAsync("..");
         }
 
         [RelayCommand]
@@ -33,14 +34,14 @@ namespace DayPlanner.ViewModels
 
             var response = await _noteRepository.SaveNoteAsync(NoteModel);
 
-            await Shell.Current.GoToAsync(nameof(NoteListPage));
+            await NavigationService.NavigateToAsync("..");
         }
 
         #endregion Private Methods
 
         #region Public Constructors
 
-        public NoteEditVM(INoteRepository noteRepository)
+        public NoteEditVM(INoteRepository noteRepository, INavigationService navigationService) : base(navigationService) 
         {
             _noteRepository = noteRepository;
         }
