@@ -48,12 +48,6 @@ namespace DayPlanner.Data
             return await _connection.DeleteAsync(note);
         }
 
-        public async Task<List<NoteModel>> GetNotesAsync()
-        {
-            await Init();
-            return await _connection.Table<NoteModel>().ToListAsync();
-        }
-
         public async Task<List<NoteModel>> GetFilteredNotesAsync(string query)
         {
             await Init();
@@ -66,6 +60,12 @@ namespace DayPlanner.Data
             return await _connection.Table<NoteModel>()
                                     .Where(note => note.Title.Contains(query) || note.Text.Contains(query))
                                     .ToListAsync();
+        }
+
+        public async Task<List<NoteModel>> GetNotesAsync()
+        {
+            await Init();
+            return await _connection.Table<NoteModel>().ToListAsync();
         }
 
         public async Task<int> SaveNoteAsync(NoteModel note)

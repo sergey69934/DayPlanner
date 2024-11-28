@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using DayPlanner.Data;
 using DayPlanner.Models;
 using DayPlanner.Services;
-using DayPlanner.Views;
 
 namespace DayPlanner.ViewModels
 {
