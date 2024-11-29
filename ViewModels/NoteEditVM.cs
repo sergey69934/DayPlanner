@@ -14,9 +14,20 @@ namespace DayPlanner.ViewModels
         [ObservableProperty]
         private NoteModel _noteModel;
 
+        [ObservableProperty]
+        private TimeSpan _scheduledTime;
+
         private INoteRepository _noteRepository;
 
         #endregion Private Fields
+
+        partial void OnNoteModelChanged(NoteModel value)
+        {
+            if (value != null)
+            {
+                ScheduledTime = value.ScheduledDate.TimeOfDay;
+            }
+        }
 
         #region Private Methods
 
@@ -30,6 +41,7 @@ namespace DayPlanner.ViewModels
         private async Task Save()
         {
             NoteModel.CreatedOrUpdatedDate = DateTime.Now;
+            NoteModel.ScheduledDate = NoteModel.ScheduledDate.Add(ScheduledTime);
 
             var response = await _noteRepository.SaveNoteAsync(NoteModel);
 

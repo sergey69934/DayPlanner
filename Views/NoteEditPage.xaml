@@ -5,12 +5,6 @@
              Title="Создать/Редактировать заметку"
              xmlns:converters="clr-namespace:DayPlanner.Services">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
     <StackLayout Padding="20" Spacing="15">
         <Entry Placeholder="Название" 
            Text="{Binding NoteModel.Title}" />
@@ -23,7 +17,7 @@
         
         <Grid ColumnDefinitions="*, Auto" RowSpacing="10">
             <DatePicker Date="{Binding NoteModel.ScheduledDate}" />
-            <TimePicker Time="{Binding NoteModel.ScheduledDate, Converter={StaticResource DateTimeToTimeSpanConverter}}" 
+            <TimePicker Time="{Binding ScheduledTime}" 
                     Grid.Column="1" />
         </Grid>
 
