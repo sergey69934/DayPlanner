@@ -22,11 +22,11 @@ namespace DayPlanner
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             // Views
-            builder.Services.AddTransient<NoteListPage>();
+            builder.Services.AddSingleton<NoteListPage>();
             builder.Services.AddTransient<NoteEditPage>();
 
             //ViewModels
-            builder.Services.AddTransient<NoteListVM>();
+            builder.Services.AddSingleton<NoteListVM>();
             builder.Services.AddTransient<NoteEditVM>();
 #if DEBUG
             builder.Logging.AddDebug();

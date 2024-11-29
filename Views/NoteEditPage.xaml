@@ -2,7 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayPlanner.Views.NoteEditPage"
-             Title="Создать/Редактировать заметку">
+             Title="Создать/Редактировать заметку"
+             xmlns:converters="clr-namespace:DayPlanner.Services">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <StackLayout Padding="20" Spacing="15">
         <Entry Placeholder="Название" 
            Text="{Binding NoteModel.Title}" />
@@ -15,7 +23,7 @@
            Style="{StaticResource LabelStyle}" />
         <Grid ColumnDefinitions="*, Auto" RowSpacing="10">
             <DatePicker Date="{Binding NoteModel.ScheduledDate}" />
-            <TimePicker Time="{Binding NoteModel.ScheduledDate, Converter={StaticResource TimeConverter}}" 
+            <TimePicker Time="{Binding NoteModel.ScheduledDate, Converter={StaticResource DateTimeToTimeSpanConverter}}" 
                     Grid.Column="1" />
         </Grid>
 

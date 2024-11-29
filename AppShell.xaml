@@ -8,7 +8,7 @@
     Title="Заметки">
 
     <ShellContent 
-        Title="Ежедневник" 
+        Title="Заметки" 
         ContentTemplate="{DataTemplate views:NoteListPage}" 
         Route="NoteListPage"/>
     <ShellContent 

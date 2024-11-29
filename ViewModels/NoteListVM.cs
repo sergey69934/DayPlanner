@@ -65,6 +65,8 @@ namespace DayPlanner.ViewModels
             {
                 { nameof(NoteModel), SelectedNote }
             });
+
+            SelectedNote = null;
         }
 
         partial void OnSearchTextChanged(string value)
