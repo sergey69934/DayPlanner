@@ -4,16 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.FlyoutBehavior="Flyout"
-    xmlns:views="clr-namespace:DayPlanner.Views"
-    Title="Заметки">
+    xmlns:views="clr-namespace:DayPlanner.Views">
 
     <ShellContent 
         Title="Заметки" 
         ContentTemplate="{DataTemplate views:NoteListPage}" 
         Route="NoteListPage"/>
+
     <ShellContent 
-        Title="Создать/Редактировать заметку" 
-        ContentTemplate="{DataTemplate views:NoteEditPage}" 
-        Route="NoteEditPage"/>
+        Title="Настройки" 
+        ContentTemplate="{DataTemplate views:SettingsPage}" 
+        Route="SettingsPage"/>
 
 </Shell>

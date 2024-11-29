@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayPlanner.Views.SettingsPage"
+             Title="Настройки">
+    
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
+            
+            <Label Text="Выберите дату" FontSize="Medium" />
+            <DatePicker Date="{Binding SelectedDate}" />
+
+            <Label Text="Цветовая схема" FontSize="Medium" />
+            <Picker ItemsSource="{Binding ColorSchemes}" 
+                    SelectedItem="{Binding SelectedColorScheme}" />
+
+            <Label Text="Размер шрифта" FontSize="Medium" />
+            <Slider Minimum="10" Maximum="24" Value="{Binding FontSize}" />
+
+            <Label Text="Шрифт" FontSize="Medium" />
+            <Picker ItemsSource="{Binding FontFamilies}" 
+                    SelectedItem="{Binding SelectedFontFamily}" />
+
+            <Button Text="Сохранить настройки" Command="{Binding SaveCommand}" />
+            <Button Text="Восстановить по умолчанию" Command="{Binding ResetCommand}" 
+                    BackgroundColor="LightGray" TextColor="Black" />
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

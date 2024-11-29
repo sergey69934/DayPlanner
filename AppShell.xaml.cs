@@ -8,8 +8,9 @@ namespace DayPlanner
         {
             InitializeComponent();
 
-            Routing.RegisterRoute(nameof(NoteListPage),typeof(NoteListPage));
+            Routing.RegisterRoute(nameof(NoteListPage), typeof(NoteListPage));
             Routing.RegisterRoute(nameof(NoteEditPage), typeof(NoteEditPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
     }
 }

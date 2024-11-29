@@ -3,11 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DayPlanner"
              x:Class="DayPlanner.App">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+                <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+                    <Color x:Key="PrimaryColor">#2196F3</Color>
+                    <Color x:Key="SecondaryColor">#FFC107</Color>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontFamily" Value="Default"/>
+                        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                        <Setter Property="TextColor" Value="White"/>
+                    </Style>
+                </ResourceDictionary>
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

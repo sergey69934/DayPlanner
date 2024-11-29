@@ -27,6 +27,7 @@
                 <Setter Property="Margin" Value="5"/>
             </Style>
         </ContentPage.Resources>
+    
         <Grid RowDefinitions="*,Auto">
             <ScrollView Grid.Row="0">
                 <StackLayout>

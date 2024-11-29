@@ -24,6 +24,7 @@ namespace DayPlanner
             // Views
             builder.Services.AddSingleton<NoteListPage>();
             builder.Services.AddTransient<NoteEditPage>();
+            builder.Services.AddSingleton<SettingsPage>();
 
             //ViewModels
             builder.Services.AddSingleton<NoteListVM>();
