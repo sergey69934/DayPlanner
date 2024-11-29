@@ -19,8 +19,8 @@
             Text="{Binding NoteModel.Text}" 
             HeightRequest="150" />
 
-        <Label Text="Запланированная дата и время:"
-           Style="{StaticResource LabelStyle}" />
+        <Label Text="Запланированная дата и время:"/>
+        
         <Grid ColumnDefinitions="*, Auto" RowSpacing="10">
             <DatePicker Date="{Binding NoteModel.ScheduledDate}" />
             <TimePicker Time="{Binding NoteModel.ScheduledDate, Converter={StaticResource DateTimeToTimeSpanConverter}}" 

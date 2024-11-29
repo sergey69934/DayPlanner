@@ -16,6 +16,7 @@ Global
 		{84ACE3B7-3827-425E-8C66-630539AB61DE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{84ACE3B7-3827-425E-8C66-630539AB61DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84ACE3B7-3827-425E-8C66-630539AB61DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84ACE3B7-3827-425E-8C66-630539AB61DE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
