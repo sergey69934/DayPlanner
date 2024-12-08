@@ -69,6 +69,12 @@ namespace DayPlanner.ViewModels
             SelectedNote = null;
         }
 
+        [RelayCommand]
+        private async Task ClearSearch()
+        {
+            SearchText = "";
+        }
+
         partial void OnSearchTextChanged(string value)
         {
             if (!string.IsNullOrWhiteSpace(value))

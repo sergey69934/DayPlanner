@@ -6,41 +6,85 @@
              Shell.NavBarIsVisible="True">
 
     <ContentPage.Resources>
-            <Style x:Key="TitleStyle" TargetType="Label">
+        <Style x:Key="SearchPicker" TargetType="Picker">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColorDark}" />
+        </Style>
+        
+        <Style x:Key="TitleStyleLabel" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Light='#000', Dark='#FFF'}" />
-            </Style>
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColorDark}" />
+        </Style>
 
-        <Style x:Key="DescriptionStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light='#757575', Dark='#BDBDBD'}" />
-            </Style>
+        <Style x:Key="DescriptionStyleLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColorDark}" />
+        </Style>
 
-        <Style x:Key="DateStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light='#9E9E9E', Dark='#616161'}" />
-            </Style>
+        <Style x:Key="DateStyleLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColorDark}" />
+        </Style>
 
-            <Style x:Key="NoteBorderStyle" TargetType="Border">
-                <Setter Property="Stroke" Value="#CCCCCC"/>
-                <Setter Property="StrokeThickness" Value="1"/>
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-        </ContentPage.Resources>
+        <Style x:Key="NoteBorderStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="{DynamicResource SecondaryTextColorDark}"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="DeleteNoteButton" TargetType="Button" BasedOn="{StaticResource NegativeActionButton}">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="MaximumWidthRequest" Value="20" />
+            <Setter Property="MaximumHeightRequest" Value="20" />
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="HeightRequest" Value="20" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="ToolTipProperties.Text" Value="ToolTipProperties.Text" />
+            <Setter Property="Text" Value="X" />
+        </Style>
+
+        <Style x:Key="AddButtonStyle" TargetType="Button" BasedOn="{StaticResource PositiveActionButton}">
+            <Setter Property="Text" Value="+" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="WidthRequest" Value="60" />
+            <Setter Property="HeightRequest" Value="60" />
+            <Setter Property="CornerRadius" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="VerticalOptions" Value="EndAndExpand" />
+            <Setter Property="Margin" Value="0,0,20,20" />
+        </Style>
+
+    </ContentPage.Resources>
     
         <Grid RowDefinitions="*,Auto">
             <ScrollView Grid.Row="0">
                 <StackLayout>
-                    <Grid>
-                        <SearchBar Placeholder="Поиск в заметках"
-                           Text="{Binding SearchText}"/>
+                <ContentView>
+                    <Grid Padding="10" BackgroundColor="Transparent">
+                        <Image Source="search.png" 
+                               Aspect="AspectFit"
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               VerticalOptions="Center"
+                               Margin="0,0,10,0" />
 
-                        <Button Text="x"
-                        WidthRequest="30"
-                        HeightRequest="30"
-                        BackgroundColor="Transparent"
-                        Command="{Binding ClearSearchCommand}"
-                        VerticalOptions="Center"
-                        HorizontalOptions="End" />
+                        <Entry x:Name="SearchEntry"
+                               Placeholder="Поиск в заметках"
+                               PlaceholderColor="{StaticResource PrimaryButtonColorDark}"
+                               TextColor="{StaticResource PrimaryButtonColorDark}"
+                               Text="{Binding SearchText}"
+                               VerticalOptions="Center"
+                               Keyboard="Default" />
+
+                        <Button Text="Отмена"
+                                FontSize="14"
+                                TextColor="{StaticResource PrimaryButtonColorDark}"
+                                BackgroundColor="Transparent"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Command="{Binding ClearSearchCommand}" />
                     </Grid>
+                </ContentView>
 
                     <Grid Padding="10">
                         <CollectionView
@@ -54,26 +98,15 @@
                                     <Border Style="{StaticResource NoteBorderStyle}">
                                         <Grid Padding="10" ColumnDefinitions="*,Auto">
                                             <StackLayout Grid.Column="0" Padding="0,0,0,0">
-                                                <Label Text="{Binding Title}" Style="{StaticResource TitleStyle}" />
-                                                <Label Text="{Binding Text}" Style="{StaticResource DescriptionStyle}" 
-                                LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Text="{Binding Title}" Style="{StaticResource TitleStyleLabel}" />
+                                            <Label Text="{Binding Text}" Style="{StaticResource DescriptionStyleLabel}"  LineBreakMode="TailTruncation" MaxLines="1" />
                                                 <Label Text="{Binding ScheduledDate, StringFormat='{}{0:dd MMM yyyy}'}" 
-                                            Style="{StaticResource DateStyle}" />
+                                            Style="{StaticResource DateStyleLabel}" />
                                             </StackLayout>
-                                            <Button Text="X" 
-                                            BackgroundColor="#FF2626" 
-                                            TextColor="White" 
-                                            Padding="1"
-                                            HorizontalOptions="End"
-                                            VerticalOptions="Start"
-                                            MaximumWidthRequest="20"
-                                            MaximumHeightRequest="20"
-                                            CornerRadius="10"
-                                            ToolTipProperties.Text="Заметка удалена" 
-                                            Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
-                                            CommandParameter="{Binding}" 
-                                            Grid.Column="1" />
-                                        </Grid>
+                                            <Button Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                                CommandParameter="{Binding}" Grid.Column="1"
+                                                Style="{StaticResource DeleteNoteButton}" />
+                                    </Grid>
                                     </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -84,16 +117,7 @@
 
             <Button Text="+"
                 Grid.Row="1"
-                FontSize="35"
-                Padding="0"
-                Command="{Binding AddNoteCommand}"
-                BackgroundColor="Green"
-                TextColor="White"
-                WidthRequest="60"
-                HeightRequest="60"
-                CornerRadius="30"
-                HorizontalOptions="End"
-                VerticalOptions="EndAndExpand"
-                Margin="0,0,20,20"/>
+                Style="{StaticResource AddButtonStyle}"
+                Command="{Binding AddNoteCommand}"/>
         </Grid>
 </ContentPage>
