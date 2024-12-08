@@ -5,6 +5,9 @@
         public App()
         {
             InitializeComponent();
+
+            Resources.Add("GlobalFontFamily", "Cornerita");
+            Resources.Add("GlobalFontSize", 14);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

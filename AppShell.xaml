@@ -3,17 +3,21 @@
     x:Class="DayPlanner.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     xmlns:views="clr-namespace:DayPlanner.Views">
-
-    <ShellContent 
-        Title="Заметки" 
+    
+    <TabBar>
+        <ShellContent 
+        Title="Заметки"
+        Icon="notes.png"
         ContentTemplate="{DataTemplate views:NoteListPage}" 
         Route="NoteListPage"/>
 
-    <ShellContent 
+        <ShellContent 
         Title="Настройки" 
+        Icon="settings.png"
         ContentTemplate="{DataTemplate views:SettingsPage}" 
         Route="SettingsPage"/>
-
+    </TabBar>
+    
 </Shell>

@@ -2,28 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayPlanner.Views.SettingsPage"
-             Title="Настройки">
+             Title="Настройки"
+             Shell.NavBarIsVisible="True">
     
     <ScrollView>
         <StackLayout Padding="20" Spacing="10">
-            
-            <Label Text="Выберите дату" FontSize="Medium" />
-            <DatePicker Date="{Binding SelectedDate}" />
 
-            <Label Text="Цветовая схема" FontSize="Medium" />
-            <Picker ItemsSource="{Binding ColorSchemes}" 
-                    SelectedItem="{Binding SelectedColorScheme}" />
 
-            <Label Text="Размер шрифта" FontSize="Medium" />
-            <Slider Minimum="10" Maximum="24" Value="{Binding FontSize}" />
+            <Label Text="Размер шрифта" />
+            <Slider Minimum="14" Maximum="18" Value="{Binding CurrentFontSize}" />
 
-            <Label Text="Шрифт" FontSize="Medium" />
-            <Picker ItemsSource="{Binding FontFamilies}" 
-                    SelectedItem="{Binding SelectedFontFamily}" />
+            <Label Text="Шрифт" FontSize="Medium"/>
+            <Picker ItemsSource="{Binding Fonts}" SelectedItem="{Binding CurrentFontFamily}" />
 
-            <Button Text="Сохранить настройки" Command="{Binding SaveCommand}" />
-            <Button Text="Восстановить по умолчанию" Command="{Binding ResetCommand}" 
+            <Button Text="Сохранить настройки" Command="{Binding SaveSettingsCommand}" />
+            <Button Text="Восстановить по умолчанию" Command="{Binding ResetSettingsCommand}" 
                     BackgroundColor="LightGray" TextColor="Black" />
+            
         </StackLayout>
     </ScrollView>
     

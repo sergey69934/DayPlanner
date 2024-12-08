@@ -11,8 +11,15 @@ namespace DayPlanner
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>();
+            builder.UseMauiApp<App>();
+
+            //Fonts
+            builder.ConfigureFonts(fonts =>
+             {
+                 fonts.AddFont("Cornerita-Thin.ttf", "Cornerita");
+                 fonts.AddFont("Ebbe-Thin.ttf", "Ebbe");
+                 fonts.AddFont("Karsten-Thin.ttf", "Karsten");
+             });
 
             //Services
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "notes.db3");
@@ -29,6 +36,8 @@ namespace DayPlanner
             //ViewModels
             builder.Services.AddSingleton<NoteListVM>();
             builder.Services.AddTransient<NoteEditVM>();
+            builder.Services.AddTransient<SettingsVM>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

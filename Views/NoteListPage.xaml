@@ -2,23 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayPlanner.Views.NoteListPage"
-             Title="Заметки">
+             Title="Заметки"
+             Shell.NavBarIsVisible="True">
 
     <ContentPage.Resources>
             <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Light='#000', Dark='#FFF'}" />
             </Style>
 
-            <Style x:Key="DescriptionStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Light='#757575', Dark='#BDBDBD'}" />
+        <Style x:Key="DescriptionStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light='#757575', Dark='#BDBDBD'}" />
             </Style>
 
-            <Style x:Key="DateStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Micro" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Light='#9E9E9E', Dark='#616161'}" />
+        <Style x:Key="DateStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light='#9E9E9E', Dark='#616161'}" />
             </Style>
 
             <Style x:Key="NoteBorderStyle" TargetType="Border">
