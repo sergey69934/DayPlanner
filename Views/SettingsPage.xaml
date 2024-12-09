@@ -21,12 +21,10 @@
 
             <Grid ColumnDefinitions="*, *" Padding="5">
                 <Button Text="Сохранить настройки" Style="{DynamicResource SaveButton}" Command="{Binding SaveSettingsCommand}" 
-                        Grid.Column="0"
-                        Margin="5"/>
+                        Grid.Column="0" />
 
                 <Button Text="По умолчанию" Style="{DynamicResource ResetButton}" Command="{Binding ResetSettingsCommand}" 
-                        Grid.Column="1"
-                        Margin="5"/>
+                        Grid.Column="1" />
             </Grid>
             
         </StackLayout>

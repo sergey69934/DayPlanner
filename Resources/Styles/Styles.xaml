@@ -16,20 +16,40 @@
         <Setter Property="Shell.TitleColor" Value="{StaticResource PrimaryTextColorDark}" />
     </Style>
 
+    <Style TargetType="SearchBar">
+        <Setter Property="Placeholder" Value="Поиск в заметках" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="CancelButtonColor" Value="{StaticResource PrimaryButtonColorDark}" />
+    </Style>
+    
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
     </Style>
 
-    <Style x:Key="NegativeActionButton" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonColorDark}" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
-    </Style>
-
-    <Style x:Key="PositiveActionButton" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource SecondaryButtonColorDark}" />
+    <Style x:Key="BaseButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Margin" Value="5" />
         <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
     </Style>
     
+    <Style x:Key="NegativeActionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonColorDark}" />
+    </Style>
+
+    <Style x:Key="PositiveActionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="BackgroundColor" Value="{StaticResource SecondaryButtonColorDark}" />
+    </Style>
+
+    <Style TargetType="TimePicker">
+        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
+    </Style>
+
     <Style TargetType="Slider">
         <Setter Property="MaximumTrackColor" Value="{StaticResource SecondaryButtonColorDark}" />
         <Setter Property="ThumbColor" Value="{StaticResource SliderThumbColor}" />
