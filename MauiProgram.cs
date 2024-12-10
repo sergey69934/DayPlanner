@@ -16,7 +16,7 @@ namespace DayPlanner
             //Fonts
             builder.ConfigureFonts(fonts =>
              {
-                 foreach (var font in FontRegistry.Fonts)
+                 foreach (var font in StyleRegistry.Fonts)
                  {
                      fonts.AddFont(font.Value, font.Key);
                  }

@@ -10,12 +10,14 @@ namespace DayPlanner
             InitializeComponent();
 
             // Получение сохранённых данных (шрифт, стиль)
-            string fontFamily = Preferences.Get(nameof(SettingsVM.FontFamily), FontRegistry.DefeaultFontFamily);
-            double fontSize = Preferences.Get(nameof(SettingsVM.FontSize), FontRegistry.DefeaultFontSize);
+            string fontFamily = Preferences.Get(nameof(SettingsVM.FontFamily), StyleRegistry.DefeaultFontFamily);
+            double fontSize = Preferences.Get(nameof(SettingsVM.FontSize), StyleRegistry.DefeaultFontSize);
+            string Theme = Preferences.Get(nameof(SettingsVM.Theme), StyleRegistry.DefeaultTheme);
 
             // Добавление ресурсов
             Resources.Add(nameof(SettingsVM.FontFamily), fontFamily);
             Resources.Add(nameof(SettingsVM.FontSize), fontSize);
+            Resources.Add(nameof(SettingsVM.Theme), Theme);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

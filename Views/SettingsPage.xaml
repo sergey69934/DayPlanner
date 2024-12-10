@@ -14,6 +14,9 @@
             <Label Text="Шрифт" />
             <Picker ItemsSource="{Binding Fonts}" SelectedItem="{Binding FontFamily}" />
 
+            <Label Text="Тема" />
+            <Picker ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme}" />
+            
             <Grid ColumnDefinitions="*, *" Padding="5">
                 <Button Text="Сохранить настройки" Style="{DynamicResource PositiveActionButton}" Command="{Binding SaveSettingsCommand}" 
                         Grid.Column="0" />
