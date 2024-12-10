@@ -9,24 +9,25 @@
         
         <Style x:Key="TitleStyleLabel" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColorDark}" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
         </Style>
 
         <Style x:Key="DescriptionStyleLabel" TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColorDark}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
         </Style>
 
         <Style x:Key="DateStyleLabel" TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColorDark}" />
+            <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
         </Style>
 
         <Style x:Key="NoteBorderStyle" TargetType="Border">
-        <Setter Property="Stroke" Value="{DynamicResource SecondaryTextColorDark}"/>
+        <Setter Property="Stroke" Value="{DynamicResource SecondaryTextColor}"/>
             <Setter Property="StrokeThickness" Value="1"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
 
-        <Style x:Key="DeleteNoteButton" TargetType="Button" BasedOn="{StaticResource NegativeActionButton}">
+        <Style x:Key="DeleteNoteButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryButtonColor}" />
             <Setter Property="Padding" Value="1" />
             <Setter Property="MaximumWidthRequest" Value="20" />
             <Setter Property="MaximumHeightRequest" Value="20" />
@@ -39,7 +40,8 @@
             <Setter Property="Text" Value="X" />
         </Style>
 
-        <Style x:Key="AddButtonStyle" TargetType="Button" BasedOn="{StaticResource PositiveActionButton}">
+        <Style x:Key="AddButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryButtonColor}" />
             <Setter Property="Text" Value="+" />
             <Setter Property="FontSize" Value="35" />
             <Setter Property="WidthRequest" Value="60" />
@@ -57,10 +59,7 @@
             <ScrollView Grid.Row="0">
                 <StackLayout>
                 <Grid>
-                    <SearchBar 
-                        Style="{StaticResource SearchNoteBar}" 
-                        Text="{Binding SearchText}" />
-
+                    <SearchBar Text="{Binding SearchText}" />
                 </Grid>
 
                 <Grid Padding="10">
@@ -72,29 +71,30 @@
                             ItemsLayout="VerticalGrid, 2">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Style="{StaticResource NoteBorderStyle}">
+                                <Border Style="{DynamicResource NoteBorderStyle}">
                                         <Grid Padding="10" ColumnDefinitions="*,Auto">
                                             <StackLayout Grid.Column="0" Padding="0,0,0,0">
-                                            <Label Text="{Binding Title}" Style="{StaticResource TitleStyleLabel}" />
-                                            <Label Text="{Binding Text}" Style="{StaticResource DescriptionStyleLabel}"  LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Text="{Binding Title}" Style="{DynamicResource TitleStyleLabel}" />
+                                            <Label Text="{Binding Text}" Style="{DynamicResource DescriptionStyleLabel}"  LineBreakMode="TailTruncation" MaxLines="1" />
                                                 <Label Text="{Binding ScheduledDate, StringFormat='{}{0:dd MMM yyyy}'}" 
-                                            Style="{StaticResource DateStyleLabel}" />
+                                            Style="{DynamicResource DateStyleLabel}" />
                                             </StackLayout>
                                             <Button Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
                                                 CommandParameter="{Binding}" Grid.Column="1"
-                                                Style="{StaticResource DeleteNoteButton}" />
+                                                Style="{DynamicResource DeleteNoteButton}" />
                                     </Grid>
                                     </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </Grid>
+                    
                 </StackLayout>
             </ScrollView>
-
+            
             <Button 
                 Grid.Row="1"
-                Style="{StaticResource AddButtonStyle}"
+                Style="{DynamicResource AddButtonStyle}"
                 Command="{Binding AddNoteCommand}"/>
         </Grid>
 </ContentPage>

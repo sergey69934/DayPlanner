@@ -11,51 +11,47 @@ namespace DayPlanner.ViewModels
         private ObservableCollection<string> _fonts;
 
         [ObservableProperty]
-        private double _currentFontSize;
+        private double _fontSize;
 
         [ObservableProperty]
-        private string _currentFontFamily;
+        private string _fontFamily;
 
-        partial void OnCurrentFontFamilyChanged(string value)
+        partial void OnFontFamilyChanged(string value)
         {
             if (value != null)
             {
-                Application.Current.Resources["GlobalFontFamily"] = value;
+                Application.Current.Resources[nameof(FontFamily)] = value;
             }
         }
 
-        partial void OnCurrentFontSizeChanged(double value)
+        partial void OnFontSizeChanged(double value)
         {
             if (value != null)
             {
-                Application.Current.Resources["GlobalFontSize"] = value;
+                Application.Current.Resources[nameof(FontSize)] = value;
             }
         }
 
-        [RelayCommand]
-        private void SaveSettings()
-        {
-            Preferences.Set("FontFamily", CurrentFontFamily);
-            Preferences.Set("FontSize", CurrentFontSize);
-        }
+            [RelayCommand]
+            private void SaveSettings()
+            {
+                Preferences.Set(nameof(FontFamily), FontFamily);
+                Preferences.Set(nameof(FontSize), FontSize);
+            }
 
-        [RelayCommand]
-        private void ResetSettings()
-        {
-            Preferences.Remove("FontFamily");
-            Preferences.Remove("FontSize");
-        }
+            [RelayCommand]
+            private void ResetSettings()
+            {
+                Preferences.Remove(nameof(FontFamily));
+                Preferences.Remove(nameof(FontSize));
+            }
 
         public SettingsVM(INavigationService navigationService) : base(navigationService)
         {
-            Fonts = new ObservableCollection<string>(){
-                "Cornerita",
-                "Ebbe",
-                "Karsten"
-            };
+            Fonts = new ObservableCollection<string>(FontRegistry.Fonts.Keys);
 
-            CurrentFontSize = Preferences.Get("FontSize", 16.0);
-            CurrentFontFamily = Preferences.Get("FontFamily", "Arial");
+            FontSize = Preferences.Get(nameof(FontSize), FontRegistry.DefeaultFontSize);
+            FontFamily = Preferences.Get(nameof(FontFamily), FontRegistry.DefeaultFontFamily);
         }
     }
 }

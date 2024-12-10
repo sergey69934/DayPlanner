@@ -4,29 +4,24 @@
              x:Class="DayPlanner.Views.SettingsPage"
              Title="Настройки"
              Shell.NavBarIsVisible="True">
-
-    <ContentPage.Resources>
-        <Style x:Key="SaveButton" TargetType="Button" BasedOn="{StaticResource PositiveActionButton}"/>
-        <Style x:Key="ResetButton" TargetType="Button" BasedOn="{StaticResource NegativeActionButton}"/>
-    </ContentPage.Resources>
     
     <ScrollView>
         <StackLayout Padding="20" Spacing="10">
             
             <Label Text="Размер шрифта" />
-            <Slider Minimum="14" Maximum="18" Value="{Binding CurrentFontSize}" />
+            <Slider Minimum="14" Maximum="18" Value="{Binding FontSize}" />
 
             <Label Text="Шрифт" />
-            <Picker ItemsSource="{Binding Fonts}" SelectedItem="{Binding CurrentFontFamily}" />
+            <Picker ItemsSource="{Binding Fonts}" SelectedItem="{Binding FontFamily}" />
 
             <Grid ColumnDefinitions="*, *" Padding="5">
-                <Button Text="Сохранить настройки" Style="{DynamicResource SaveButton}" Command="{Binding SaveSettingsCommand}" 
+                <Button Text="Сохранить настройки" Style="{DynamicResource PositiveActionButton}" Command="{Binding SaveSettingsCommand}" 
                         Grid.Column="0" />
 
-                <Button Text="По умолчанию" Style="{DynamicResource ResetButton}" Command="{Binding ResetSettingsCommand}" 
+                <Button Text="По умолчанию" Style="{DynamicResource NegativeActionButton}" Command="{Binding ResetSettingsCommand}" 
                         Grid.Column="1" />
+                
             </Grid>
-            
         </StackLayout>
     </ScrollView>
     

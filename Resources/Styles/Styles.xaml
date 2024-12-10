@@ -6,70 +6,90 @@
     
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColorDark}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
     </Style>
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource PrimaryTextColorDark}" />
-        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource SecondaryTextColorDark}" />
-        <Setter Property="Shell.BackgroundColor" Value="{StaticResource BackgroundColorDark}" />
-        <Setter Property="Shell.TitleColor" Value="{StaticResource PrimaryTextColorDark}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource SecondaryTextColor}" />
+        <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="Shell.TitleColor" Value="{DynamicResource PrimaryTextColor}" />
     </Style>
 
     <Style TargetType="SearchBar">
         <Setter Property="Placeholder" Value="Поиск в заметках" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryTextColorDark}" />
-        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
-        <Setter Property="CancelButtonColor" Value="{StaticResource PrimaryButtonColorDark}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource SecondaryTextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+        <Setter Property="CancelButtonColor" Value="{DynamicResource PrimaryButtonColor}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
     </Style>
     
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
     </Style>
 
     <Style x:Key="BaseButton" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Margin" Value="5" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
     </Style>
-    
+
     <Style x:Key="NegativeActionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryButtonColor}" />
     </Style>
 
     <Style x:Key="PositiveActionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
-        <Setter Property="BackgroundColor" Value="{StaticResource SecondaryButtonColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryButtonColor}" />
     </Style>
 
     <Style TargetType="TimePicker">
-        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
     </Style>
 
     <Style TargetType="DatePicker">
-        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
     </Style>
 
     <Style TargetType="Slider">
-        <Setter Property="MaximumTrackColor" Value="{StaticResource SecondaryButtonColorDark}" />
-        <Setter Property="ThumbColor" Value="{StaticResource SliderThumbColor}" />
-        <Setter Property="MinimumTrackColor" Value="{StaticResource SliderMinimumTrackColor}" />
-        <Setter Property="MaximumTrackColor" Value="{StaticResource SliderMaximumTrackColor}" />
+        <Setter Property="MaximumTrackColor" Value="{DynamicResource SecondaryButtonColor}" />
+        <Setter Property="ThumbColor" Value="{DynamicResource SliderThumbColor}" />
+        <Setter Property="MinimumTrackColor" Value="{DynamicResource SliderMinimumTrackColor}" />
+        <Setter Property="MaximumTrackColor" Value="{DynamicResource SliderMaximumTrackColor}" />
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="TitleColor" Value="{StaticResource PrimaryTextColorDark}" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="TitleColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource SecondaryTextColor}" />
     </Style>
 
     <Style TargetType="Editor">
-        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColorDark}" />
-        <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryTextColorDark}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource SecondaryTextColor}" />
     </Style>
     
 </ResourceDictionary>

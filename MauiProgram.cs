@@ -16,9 +16,10 @@ namespace DayPlanner
             //Fonts
             builder.ConfigureFonts(fonts =>
              {
-                 fonts.AddFont("Cornerita-Thin.ttf", "Cornerita");
-                 fonts.AddFont("Ebbe-Thin.ttf", "Ebbe");
-                 fonts.AddFont("Karsten-Thin.ttf", "Karsten");
+                 foreach (var font in FontRegistry.Fonts)
+                 {
+                     fonts.AddFont(font.Value, font.Key);
+                 }
              });
 
             //Services
