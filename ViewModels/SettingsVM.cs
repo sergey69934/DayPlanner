@@ -72,6 +72,7 @@ namespace DayPlanner.ViewModels
         {
             Preferences.Set(nameof(FontFamily), FontFamily);
             Preferences.Set(nameof(FontSize), FontSize);
+            Preferences.Set(nameof(Theme), Theme);
         }
 
         [RelayCommand]
@@ -79,6 +80,7 @@ namespace DayPlanner.ViewModels
         {
             Preferences.Remove(nameof(FontFamily));
             Preferences.Remove(nameof(FontSize));
+            Preferences.Set(nameof(Theme), Theme);
         }
 
         public SettingsVM(INavigationService navigationService) : base(navigationService)

@@ -17,7 +17,24 @@ namespace DayPlanner
             // Добавление ресурсов
             Resources.Add(nameof(SettingsVM.FontFamily), fontFamily);
             Resources.Add(nameof(SettingsVM.FontSize), fontSize);
-            Resources.Add(nameof(SettingsVM.Theme), Theme);
+
+            ResourceDictionary newTheme = Theme switch
+            {
+                "BlueTheme" => new Resources.Themes.BlueTheme(),
+                "WhiteTheme" => new Resources.Themes.WhiteTheme(),
+                "DarkTheme" => new Resources.Themes.DarkTheme(),
+                _ => new Resources.Themes.WhiteTheme()
+            };
+
+            var currentTheme = Application.Current.Resources.MergedDictionaries
+                .FirstOrDefault(rd => rd is Resources.Themes.BlueTheme || rd is Resources.Themes.WhiteTheme || rd is Resources.Themes.DarkTheme);
+
+            if (currentTheme != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(currentTheme);
+            }
+
+            Application.Current.Resources.MergedDictionaries.Add(newTheme);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
