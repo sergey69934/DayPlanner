@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DayPlanner.Data;
 using DayPlanner.Models;
 using DayPlanner.Services;
 using DayPlanner.Views;
+using System.Collections.ObjectModel;
 
 namespace DayPlanner.ViewModels
 {
@@ -30,7 +30,7 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task AddNote()
         {
-            await NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
+            await this.NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
             {
                 { nameof(NoteModel), new NoteModel() }
             });
@@ -39,21 +39,21 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task DeleteNote(NoteModel noteModel)
         {
-            await _noteRepository.DeleteNoteAsync(noteModel);
-            Notes.Remove(noteModel);
+            await this._noteRepository.DeleteNoteAsync(noteModel);
+            this.Notes.Remove(noteModel);
         }
 
         [RelayCommand]
         private async Task GetNoteList()
         {
-            var noteList = await _noteRepository.GetNotesAsync();
+            var noteList = await this._noteRepository.GetNotesAsync();
 
-            Notes.Clear();
+            this.Notes.Clear();
             if (noteList?.Count > 0)
             {
                 foreach (var note in noteList)
                 {
-                    Notes.Add(note);
+                    this.Notes.Add(note);
                 }
             }
         }
@@ -61,18 +61,18 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task NoteTapped()
         {
-            await NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
+            await this.NavigationService.NavigateToAsync(nameof(NoteEditPage), new Dictionary<string, object>
             {
-                { nameof(NoteModel), SelectedNote }
+                { nameof(NoteModel), this.SelectedNote }
             });
 
-            SelectedNote = null;
+            this.SelectedNote = null;
         }
 
         [RelayCommand]
         private async Task ClearSearch()
         {
-            SearchText = "";
+            this.SearchText = "";
         }
 
         partial void OnSearchTextChanged(string value)
@@ -92,14 +92,14 @@ namespace DayPlanner.ViewModels
 
         private async Task SearchNotes(string value)
         {
-            var noteList = await _noteRepository.GetFilteredNotesAsync(value);
+            var noteList = await this._noteRepository.GetFilteredNotesAsync(value);
 
-            Notes.Clear();
+            this.Notes.Clear();
             if (noteList?.Count > 0)
             {
                 foreach (var note in noteList)
                 {
-                    Notes.Add(note);
+                    this.Notes.Add(note);
                 }
             }
         }
@@ -110,9 +110,9 @@ namespace DayPlanner.ViewModels
 
         public NoteListVM(INoteRepository noteRepository, INavigationService navigationService) : base(navigationService)
         {
-            _noteRepository = noteRepository;
+            this._noteRepository = noteRepository;
 
-            SelectedNote = null;
+            this.SelectedNote = null;
         }
 
         #endregion Public Constructors

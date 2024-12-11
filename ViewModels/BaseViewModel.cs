@@ -15,7 +15,7 @@ namespace DayPlanner.ViewModels
 
         public BaseViewModel(INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            this.NavigationService = navigationService;
         }
 
         #endregion Public Constructors

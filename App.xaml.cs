@@ -15,8 +15,8 @@ namespace DayPlanner
             string Theme = Preferences.Get(nameof(SettingsVM.Theme), StyleRegistry.DefeaultTheme);
 
             // Добавление ресурсов
-            Resources.Add(nameof(SettingsVM.FontFamily), fontFamily);
-            Resources.Add(nameof(SettingsVM.FontSize), fontSize);
+            this.Resources.Add(nameof(SettingsVM.FontFamily), fontFamily);
+            this.Resources.Add(nameof(SettingsVM.FontSize), fontSize);
 
             ResourceDictionary newTheme = Theme switch
             {

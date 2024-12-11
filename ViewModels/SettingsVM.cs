@@ -42,6 +42,7 @@ namespace DayPlanner.ViewModels
         {
             if (value != null)
             {
+                Application.Current.Resources[nameof(Theme)] = value;
                 ApplyTheme(value);
             }
         }
@@ -70,31 +71,35 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private void SaveSettings()
         {
-            Preferences.Set(nameof(FontFamily), FontFamily);
-            Preferences.Set(nameof(FontSize), FontSize);
-            Preferences.Set(nameof(Theme), Theme);
+            Preferences.Set(nameof(this.FontFamily), this.FontFamily);
+            Preferences.Set(nameof(this.FontSize), this.FontSize);
+            Preferences.Set(nameof(this.Theme), this.Theme);
         }
 
         [RelayCommand]
         private void ResetSettings()
         {
-            Preferences.Remove(nameof(FontFamily));
-            Preferences.Remove(nameof(FontSize));
-            Preferences.Set(nameof(Theme), Theme);
+            FontSize = StyleRegistry.DefeaultFontSize;
+            FontFamily = StyleRegistry.DefeaultFontFamily;
+            Theme = StyleRegistry.DefeaultTheme;
+
+            Preferences.Remove(nameof(this.FontFamily));
+            Preferences.Remove(nameof(this.FontSize));
+            Preferences.Remove(nameof(this.Theme));
         }
 
         public SettingsVM(INavigationService navigationService) : base(navigationService)
         {
             //Шрифты
-            Fonts = new ObservableCollection<string>(StyleRegistry.Fonts.Keys);
+            this.Fonts = new ObservableCollection<string>(StyleRegistry.Fonts.Keys);
 
-            FontSize = Preferences.Get(nameof(FontSize), StyleRegistry.DefeaultFontSize);
-            FontFamily = Preferences.Get(nameof(FontFamily), StyleRegistry.DefeaultFontFamily);
+            this.FontSize = Preferences.Get(nameof(this.FontSize), StyleRegistry.DefeaultFontSize);
+            this.FontFamily = Preferences.Get(nameof(this.FontFamily), StyleRegistry.DefeaultFontFamily);
 
             //Темы
-            Themes = new ObservableCollection<string>(StyleRegistry.Themes);
+            this.Themes = new ObservableCollection<string>(StyleRegistry.Themes);
 
-            Theme = Preferences.Get(nameof(Theme), StyleRegistry.DefeaultTheme);
+            this.Theme = Preferences.Get(nameof(this.Theme), StyleRegistry.DefeaultTheme);
         }
     }
 }

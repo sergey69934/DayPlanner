@@ -74,7 +74,7 @@
                                 <Border Style="{DynamicResource NoteBorderStyle}">
                                         <Grid Padding="10" ColumnDefinitions="*,Auto">
                                             <StackLayout Grid.Column="0" Padding="0,0,0,0">
-                                            <Label Text="{Binding Title}" Style="{DynamicResource TitleStyleLabel}" />
+                                            <Label Text="{Binding Title}" Style="{DynamicResource TitleStyleLabel}" x:DataType="x:String"/>
                                             <Label Text="{Binding Text}" Style="{DynamicResource DescriptionStyleLabel}"  LineBreakMode="TailTruncation" MaxLines="1" />
                                                 <Label Text="{Binding ScheduledDate, StringFormat='{}{0:dd MMM yyyy}'}" 
                                             Style="{DynamicResource DateStyleLabel}" />

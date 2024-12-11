@@ -34,27 +34,27 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task Cancel()
         {
-            await NavigationService.NavigateToAsync("..");
+            await this.NavigationService.NavigateToAsync("..");
         }
 
         [RelayCommand]
         private async Task Save()
         {
-            NoteModel.CreatedOrUpdatedDate = DateTime.Now;
-            NoteModel.ScheduledDate = NoteModel.ScheduledDate.Add(ScheduledTime);
+            this.NoteModel.CreatedOrUpdatedDate = DateTime.Now;
+            this.NoteModel.ScheduledDate = this.NoteModel.ScheduledDate.Add(this.ScheduledTime);
 
-            var response = await _noteRepository.SaveNoteAsync(NoteModel);
+            var response = await this._noteRepository.SaveNoteAsync(this.NoteModel);
 
-            await NavigationService.NavigateToAsync("..");
+            await this.NavigationService.NavigateToAsync("..");
         }
 
         #endregion Private Methods
 
         #region Public Constructors
 
-        public NoteEditVM(INoteRepository noteRepository, INavigationService navigationService) : base(navigationService) 
+        public NoteEditVM(INoteRepository noteRepository, INavigationService navigationService) : base(navigationService)
         {
-            _noteRepository = noteRepository;
+            this._noteRepository = noteRepository;
         }
 
         #endregion Public Constructors
