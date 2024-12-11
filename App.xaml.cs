@@ -9,32 +9,15 @@ namespace DayPlanner
         {
             InitializeComponent();
 
-            // Получение сохранённых данных (шрифт, стиль)
-            string fontFamily = Preferences.Get(nameof(SettingsVM.FontFamily), StyleRegistry.DefeaultFontFamily);
-            double fontSize = Preferences.Get(nameof(SettingsVM.FontSize), StyleRegistry.DefeaultFontSize);
-            string Theme = Preferences.Get(nameof(SettingsVM.Theme), StyleRegistry.DefeaultTheme);
+            // Загрузка сохранённых настроек
+            var fontFamily = Preferences.Get(nameof(SettingsVM.FontFamily), StyleRegistry.DefeaultFontFamily);
+            var fontSize = Preferences.Get(nameof(SettingsVM.FontSize), StyleRegistry.DefeaultFontSize);
+            var theme = Preferences.Get(nameof(SettingsVM.Theme), StyleRegistry.DefeaultTheme);
 
-            // Добавление ресурсов
-            this.Resources.Add(nameof(SettingsVM.FontFamily), fontFamily);
-            this.Resources.Add(nameof(SettingsVM.FontSize), fontSize);
-
-            ResourceDictionary newTheme = Theme switch
-            {
-                "BlueTheme" => new Resources.Themes.BlueTheme(),
-                "WhiteTheme" => new Resources.Themes.WhiteTheme(),
-                "DarkTheme" => new Resources.Themes.DarkTheme(),
-                _ => new Resources.Themes.WhiteTheme()
-            };
-
-            var currentTheme = Application.Current.Resources.MergedDictionaries
-                .FirstOrDefault(rd => rd is Resources.Themes.BlueTheme || rd is Resources.Themes.WhiteTheme || rd is Resources.Themes.DarkTheme);
-
-            if (currentTheme != null)
-            {
-                Application.Current.Resources.MergedDictionaries.Remove(currentTheme);
-            }
-
-            Application.Current.Resources.MergedDictionaries.Add(newTheme);
+            // Обновление ресурсов
+            StyleManager.UpdateResource(nameof(SettingsVM.FontFamily), fontFamily);
+            StyleManager.UpdateResource(nameof(SettingsVM.FontSize), fontSize);
+            StyleManager.ApplyTheme(theme);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

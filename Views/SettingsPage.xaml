@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayPlanner.Views.SettingsPage"
              Title="Настройки"
-             Shell.NavBarIsVisible="True">
+             Shell.NavBarIsVisible="True"
+             xmlns:ViewModels="clr-namespace:DayPlanner.ViewModels"
+             x:DataType="ViewModels:SettingsVM">
     
     <ScrollView>
         <StackLayout Padding="20" Spacing="10">

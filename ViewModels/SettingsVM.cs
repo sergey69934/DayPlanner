@@ -26,7 +26,7 @@ namespace DayPlanner.ViewModels
         {
             if (value != null)
             {
-                Application.Current.Resources[nameof(FontFamily)] = value;
+                StyleManager.UpdateResource(nameof(FontFamily), value);
             }
         }
 
@@ -34,7 +34,7 @@ namespace DayPlanner.ViewModels
         {
             if (value != null)
             {
-                Application.Current.Resources[nameof(FontSize)] = value;
+                StyleManager.UpdateResource(nameof(FontSize), value);
             }
         }
 
@@ -42,30 +42,8 @@ namespace DayPlanner.ViewModels
         {
             if (value != null)
             {
-                Application.Current.Resources[nameof(Theme)] = value;
-                ApplyTheme(value);
+                StyleManager.ApplyTheme(value);
             }
-        }
-
-        private void ApplyTheme(string themeName)
-        {
-            ResourceDictionary newTheme = themeName switch
-            {
-                "BlueTheme" => new Resources.Themes.BlueTheme(),
-                "WhiteTheme" => new Resources.Themes.WhiteTheme(),
-                "DarkTheme" => new Resources.Themes.DarkTheme(),
-                _ => new Resources.Themes.WhiteTheme()
-            };
-
-            var currentTheme = Application.Current.Resources.MergedDictionaries
-                .FirstOrDefault(rd => rd is Resources.Themes.BlueTheme || rd is Resources.Themes.WhiteTheme || rd is Resources.Themes.DarkTheme);
-
-            if (currentTheme != null)
-            {
-                Application.Current.Resources.MergedDictionaries.Remove(currentTheme);
-            }
-
-            Application.Current.Resources.MergedDictionaries.Add(newTheme);
         }
 
         [RelayCommand]
@@ -79,9 +57,9 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private void ResetSettings()
         {
-            FontSize = StyleRegistry.DefeaultFontSize;
-            FontFamily = StyleRegistry.DefeaultFontFamily;
-            Theme = StyleRegistry.DefeaultTheme;
+            this.FontSize = StyleRegistry.DefeaultFontSize;
+            this.FontFamily = StyleRegistry.DefeaultFontFamily;
+            this.Theme = StyleRegistry.DefeaultTheme;
 
             Preferences.Remove(nameof(this.FontFamily));
             Preferences.Remove(nameof(this.FontSize));
@@ -92,13 +70,10 @@ namespace DayPlanner.ViewModels
         {
             //Шрифты
             this.Fonts = new ObservableCollection<string>(StyleRegistry.Fonts.Keys);
+            this.Themes = new ObservableCollection<string>(StyleRegistry.Themes);
 
             this.FontSize = Preferences.Get(nameof(this.FontSize), StyleRegistry.DefeaultFontSize);
             this.FontFamily = Preferences.Get(nameof(this.FontFamily), StyleRegistry.DefeaultFontFamily);
-
-            //Темы
-            this.Themes = new ObservableCollection<string>(StyleRegistry.Themes);
-
             this.Theme = Preferences.Get(nameof(this.Theme), StyleRegistry.DefeaultTheme);
         }
     }
