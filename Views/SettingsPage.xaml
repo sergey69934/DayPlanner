@@ -18,7 +18,10 @@
 
             <Label Text="Тема" />
             <Picker ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme}" />
-            
+
+            <Label Text="Дата"/>
+            <DatePicker Date="{Binding Date}" />
+
             <Grid ColumnDefinitions="*, *" Padding="5">
                 <Button Text="Сохранить настройки" Style="{DynamicResource PositiveActionButton}" Command="{Binding SaveSettingsCommand}" 
                         Grid.Column="0" />

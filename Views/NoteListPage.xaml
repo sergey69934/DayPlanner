@@ -66,31 +66,31 @@
                 </Grid>
 
                 <Grid Padding="10">
-                        <CollectionView
-                            ItemsSource="{Binding Notes}"
-                            SelectionMode="Single"
-                            SelectedItem="{Binding SelectedNote}"
+                    <CollectionView 
+                        ItemsSource="{Binding Notes}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedNote}"
                             SelectionChangedCommand="{Binding NoteTappedCommand}"
                             ItemsLayout="VerticalGrid, 2">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="Models:NoteModel">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="Models:NoteModel">
                                 <Border Style="{DynamicResource NoteBorderStyle}">
-                                        <Grid Padding="10" ColumnDefinitions="*,Auto">
-                                            <StackLayout Grid.Column="0" Padding="0,0,0,0">
+                                    <Grid Padding="10" ColumnDefinitions="*,Auto">
+                                        <StackLayout Grid.Column="0" Padding="0,0,0,0">
                                             <Label Text="{Binding Title}" Style="{DynamicResource TitleStyleLabel}" />
                                             <Label Text="{Binding Text}" Style="{DynamicResource DescriptionStyleLabel}"  LineBreakMode="TailTruncation" MaxLines="1" />
-                                                <Label Text="{Binding ScheduledDate, StringFormat='{}{0:dd MMM yyyy}'}" 
-                                            Style="{DynamicResource DateStyleLabel}" />
-                                            </StackLayout>
-                                            <Button Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                            <Label Text="{Binding ScheduledDate, StringFormat='{}{0:dd MMM yyyy}'}" 
+                                                Style="{DynamicResource DateStyleLabel}" />
+                                        </StackLayout>
+                                        <Button Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
                                                 CommandParameter="{Binding}" Grid.Column="1"
-                                                Style="{DynamicResource DeleteNoteButton}" />
+                                            Style="{DynamicResource DeleteNoteButton}" />
                                     </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
                     
                 </StackLayout>
             </ScrollView>
