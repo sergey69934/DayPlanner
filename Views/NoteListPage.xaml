@@ -39,7 +39,7 @@
             <Setter Property="VerticalOptions" Value="Start" />
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="HorizontalOptions" Value="End" />
-            <Setter Property="ToolTipProperties.Text" Value="ToolTipProperties.Text" />
+            <Setter Property="ToolTipProperties.Text" Value="Удалить" />
             <Setter Property="Text" Value="X" />
         </Style>
 
