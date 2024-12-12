@@ -1,4 +1,6 @@
-﻿namespace DayPlanner.Services
+﻿using DayPlanner.Resources.Themes;
+
+namespace DayPlanner.Services
 {
     public static class StyleRegistry
     {
@@ -17,9 +19,9 @@
         //Темы
         public static readonly List<string> Themes = new()
         {
-            "BlueTheme",
-            "DarkTheme",
-            "WhiteTheme"
+            nameof(BlueTheme),
+            nameof(DarkTheme),
+            nameof(WhiteTheme)
         };
 
         public static readonly string DefeaultTheme = Themes[0];

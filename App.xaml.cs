@@ -13,7 +13,7 @@ namespace DayPlanner
             var fontFamily = Preferences.Get(nameof(SettingsVM.FontFamily), StyleRegistry.DefeaultFontFamily);
             var fontSize = Preferences.Get(nameof(SettingsVM.FontSize), StyleRegistry.DefeaultFontSize);
             var theme = Preferences.Get(nameof(SettingsVM.Theme), StyleRegistry.DefeaultTheme);
-            var date = Preferences.Get(nameof(SettingsVM.Date), DateTime.Now);
+            var date = Preferences.Get(nameof(SettingsVM.Date), DateTime.Now.Date);
 
             // Обновление ресурсов
             StyleManager.UpdateResource(nameof(SettingsVM.FontFamily), fontFamily);

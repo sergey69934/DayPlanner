@@ -29,7 +29,7 @@ namespace DayPlanner
             //Navigation
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
-            // Views
+            //Views
             builder.Services.AddSingleton<NoteListPage>();
             builder.Services.AddTransient<NoteEditPage>();
             builder.Services.AddSingleton<SettingsPage>();

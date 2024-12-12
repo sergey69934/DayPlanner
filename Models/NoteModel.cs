@@ -18,7 +18,7 @@ namespace DayPlanner.Models
         public string Text { get; set; }
 
         [Column("CreatedOrUpdatedDate")]
-        public DateTime CreatedOrUpdatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedOrUpdatedDate { get; set; } = Preferences.Get("Date", DateTime.Now.Date).Add(DateTime.Now.TimeOfDay);
 
         [Column("ScheduledDate")]
         public DateTime ScheduledDate { get; set; } = DateTime.Now;

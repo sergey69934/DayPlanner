@@ -40,7 +40,7 @@ namespace DayPlanner.ViewModels
         [RelayCommand]
         private async Task Save()
         {
-            this.NoteModel.CreatedOrUpdatedDate = DateTime.Now;
+            this.NoteModel.CreatedOrUpdatedDate = Preferences.Get("Date", DateTime.Now.Date).Add(DateTime.Now.TimeOfDay);
             this.NoteModel.ScheduledDate = this.NoteModel.ScheduledDate.Add(this.ScheduledTime);
 
             var response = await this._noteRepository.SaveNoteAsync(this.NoteModel);

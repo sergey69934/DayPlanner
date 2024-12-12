@@ -37,6 +37,12 @@ namespace DayPlanner.ViewModels
         }
 
         [RelayCommand]
+        private async Task ClearSearch()
+        {
+            this.SearchText = "";
+        }
+
+        [RelayCommand]
         private async Task DeleteNote(NoteModel noteModel)
         {
             await this._noteRepository.DeleteNoteAsync(noteModel);
@@ -67,12 +73,6 @@ namespace DayPlanner.ViewModels
             });
 
             this.SelectedNote = null;
-        }
-
-        [RelayCommand]
-        private async Task ClearSearch()
-        {
-            this.SearchText = "";
         }
 
         partial void OnSearchTextChanged(string value)

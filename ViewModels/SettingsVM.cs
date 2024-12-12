@@ -7,6 +7,14 @@ namespace DayPlanner.ViewModels
 {
     public partial class SettingsVM : BaseViewModel
     {
+        #region Private Fields
+
+        [ObservableProperty]
+        private DateTime _date;
+
+        [ObservableProperty]
+        private string _fontFamily;
+
         [ObservableProperty]
         private ObservableCollection<string> _fonts;
 
@@ -14,16 +22,19 @@ namespace DayPlanner.ViewModels
         private double _fontSize;
 
         [ObservableProperty]
-        private string _fontFamily;
+        private string _theme;
 
         [ObservableProperty]
         private ObservableCollection<string> _themes;
 
-        [ObservableProperty]
-        private string _theme;
+        #endregion Private Fields
 
-        [ObservableProperty]
-        private DateTime _date;
+        #region Private Methods
+
+        partial void OnDateChanged(DateTime value)
+        {
+            StyleManager.UpdateResource(nameof(Date), value);
+        }
 
         partial void OnFontFamilyChanged(string value)
         {
@@ -49,9 +60,18 @@ namespace DayPlanner.ViewModels
             }
         }
 
-        partial void OnDateChanged(DateTime value)
+        [RelayCommand]
+        private void ResetSettings()
         {
-            StyleManager.UpdateResource(nameof(Date), value);
+            this.FontSize = StyleRegistry.DefeaultFontSize;
+            this.FontFamily = StyleRegistry.DefeaultFontFamily;
+            this.Theme = StyleRegistry.DefeaultTheme;
+            this.Date = DateTime.Now.Date;
+
+            Preferences.Remove(nameof(this.FontFamily));
+            Preferences.Remove(nameof(this.FontSize));
+            Preferences.Remove(nameof(this.Theme));
+            Preferences.Remove(nameof(this.Date));
         }
 
         [RelayCommand]
@@ -63,18 +83,9 @@ namespace DayPlanner.ViewModels
             Preferences.Set(nameof(this.Date), this.Date);
         }
 
-        [RelayCommand]
-        private void ResetSettings()
-        {
-            this.FontSize = StyleRegistry.DefeaultFontSize;
-            this.FontFamily = StyleRegistry.DefeaultFontFamily;
-            this.Theme = StyleRegistry.DefeaultTheme;
+        #endregion Private Methods
 
-            Preferences.Remove(nameof(this.FontFamily));
-            Preferences.Remove(nameof(this.FontSize));
-            Preferences.Remove(nameof(this.Theme));
-            Preferences.Remove(nameof(this.Date));
-        }
+        #region Public Constructors
 
         public SettingsVM(INavigationService navigationService) : base(navigationService)
         {
@@ -85,8 +96,9 @@ namespace DayPlanner.ViewModels
             this.FontSize = Preferences.Get(nameof(this.FontSize), StyleRegistry.DefeaultFontSize);
             this.FontFamily = Preferences.Get(nameof(this.FontFamily), StyleRegistry.DefeaultFontFamily);
             this.Theme = Preferences.Get(nameof(this.Theme), StyleRegistry.DefeaultTheme);
-
-            this.Date = Preferences.Get(nameof(this.Date), DateTime.Now);
+            this.Date = Preferences.Get(nameof(this.Date), DateTime.Now.Date);
         }
+
+        #endregion Public Constructors
     }
 }
